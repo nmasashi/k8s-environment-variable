@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-environment-variable-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: k8s-environment-variable
+  template:
+    metadata:
+      labels:
+        app: k8s-environment-variable
+    spec:
+      containers:
+        - name: k8s-environment-variable
+          image: k8s-environment-variable
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MY_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: MY_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
