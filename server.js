@@ -8,7 +8,7 @@ const app = express();
 app.get("/", (req, res) => {
 	const response = {
 		node_name: process.env.MY_NODE_NAME,
-		MY_POD_NAME: process.env.MY_POD_NAME,
+		pod_name: process.env.MY_POD_NAME,
 	};
 
 	res.send(response);
